@@ -14,4 +14,8 @@ export class SpotifyPlaylistService {
     getPlaylist(id: string): Observable<SpotifyApi.SinglePlaylistResponse> {
         return this.service.Get(`https://api.spotify.com/v1/playlists/${id}`);
     }
+
+    createPlaylist(name: string, description: string, isPublic: boolean): Observable<SpotifyApi.CreatePlaylistResponse> {
+        return this.service.Post(`https://api.spotify.com/v1/me/playlists`, {"name" : name, "description" : description, "public" : isPublic});
+    }
 }
