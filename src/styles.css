@@ -147,3 +147,9 @@ a:hover {
 .me-5 {
     margin-inline-end: 3rem !important;
 }
+#addPlaylist {
+    color: black;
+    background: white;
+    border-radius: 10px;
+    border-color: black; 
+}
