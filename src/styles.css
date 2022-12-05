@@ -153,3 +153,10 @@ a:hover {
     border-radius: 10px;
     border-color: black; 
 }
+
+#addPlaylistDiv {
+    color: black;
+    background: white;
+    border-radius: 10px;
+    border-color: black; 
+}
