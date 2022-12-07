@@ -47,9 +47,8 @@ export class LibraryComponent implements OnInit {
       });
   }
 
-  createPlaylist() {
-    console.log("hello");
-    this.playlistService.createPlaylist("test playlist", "does cool stuff", true);
+  createPlaylist(name, description, ispublic) {
+    this.playlistService.createPlaylist(name, description, ispublic);
   }
 
 }

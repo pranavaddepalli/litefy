@@ -16,8 +16,6 @@ export class SpotifyPlaylistService {
     }
 
     createPlaylist(name: string, description: string, isPublic: boolean): Observable<SpotifyApi.CreatePlaylistResponse> {
-        console.log("in service");
-        this.service.Post(`https://api.spotify.com/v1/me/playlists`, {"name" : name, "description" : description, "public" : isPublic}).subscribe(val => console.log(val));
         return this.service.Post(`https://api.spotify.com/v1/me/playlists`, {"name" : name, "description" : description, "public" : isPublic});
     }
 }
