@@ -2,6 +2,15 @@
     <div class="row">
         <div class="col-12">
             <h2>{{ 'Hello' | translate }}, {{ usuarioLogado.display_name }}. 😁 <button id="addPlaylist" (click)="createPlaylist()">Create Playlist</button></h2>
+                <div id = "addPlaylistDiv">
+                    <ul>
+                        <li><input type="text" id="playlist_name" name="playlist_name" placeholder="Name"></li>
+                        <li><input type="text" id="description" name="description" placeholder="Description"></li>
+                        <li><label for="private">Private: </label><input type="checkbox" id="private" name="private" value="private"></li>
+                        <li><button>Create new playlist</button></li>
+                        
+                    </ul>
+                </div>
         </div>
     </div>
 
