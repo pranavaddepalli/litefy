@@ -5,6 +5,7 @@ import { forkJoin } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { SpotifyUserService } from 'src/app/services/spotify-user.service';
 import { UserService } from 'src/app/services/user.service';
+import { SpotifyPlaylistService } from 'src/app/services/spotify-playlist.service';
 
 @Component({
   selector: 'app-library',
@@ -13,7 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LibraryComponent implements OnInit {
 
-  constructor(private serviceUsuario: SpotifyUserService, private usuario: UserService) { }
+  constructor(private serviceUsuario: SpotifyUserService, private usuario: UserService, private playlistService: SpotifyPlaylistService) { }
 
   userPlaylists: SpotifyApi.PagingObject<SpotifyApi.PlaylistObjectSimplified>;
   userAlbums: SpotifyApi.PagingObject<SpotifyApi.SavedAlbumObject>;
@@ -44,6 +45,11 @@ export class LibraryComponent implements OnInit {
         this.userAlbums = items[1].items;
         this.userTracks = items[2].items;
       });
+  }
+
+  createPlaylist() {
+    console.log("hello");
+    this.playlistService.createPlaylist("test playlist", "does cool stuff", true);
   }
 
 }
