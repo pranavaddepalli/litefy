@@ -147,8 +147,9 @@ export class ContentListComponent extends SettingsBase implements OnInit {
 
     add(selectItem) {
         // MARK: this is where to add songs to playlist
-        console.log("hi");
-        this.playlistService.createPlaylist("hello", "new playlist", true);
+        console.log("add");
+        console.log(this.playlistService.addTrack("4gZayV5XRm76t3cKy6RM7a", "spotify:track:4SI5jkfBClYmMWhWWH8f9p"))
+    
     }
 
     playAlbum(id) {
