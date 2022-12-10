@@ -154,9 +154,39 @@ a:hover {
     border-color: black; 
 }
 
-#addPlaylistDiv {
-    color: black;
-    background: white;
-    border-radius: 10px;
-    border-color: black; 
+
+#innerbox
+{
+   width:225px; /* or whatever width you want. */
+   max-width:225px; /* or whatever width you want. */
+   display: inline-block;
+   padding: 10px 10px;
+   color: black;
+   background: white;
+   border-color: black; 
+   border-radius: 10px;
+
+}
+
+input[type=submit] {
+    background-color: #1BB954;
+    border: none;
+    color: white;
+    width: 90%;
+    padding: 2px 5px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 6px
+  }
+
+input[type=text] {
+  width: 89%;
+  padding: 2px 5px;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+#innerbox input
+{
+  margin: 5px 11px;
 }

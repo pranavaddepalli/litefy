@@ -2,15 +2,6 @@
     <div class="row">
         <div class="col-12">
             <h2>{{ 'Hello' | translate }}, {{ usuarioLogado.display_name }}. 😁 <button id="addPlaylist">Create Playlist</button></h2>
-                <div id = "addPlaylistDiv">
-                    <ul>
-                        <li><input type="text" id="playlist_name" name="playlist_name" placeholder="Name"></li>
-                        <li><input type="text" id="description" name="description" placeholder="Description"></li>
-                        <li><label for="private">Private: </label><input type="checkbox" id="private" name="private" value="private"></li>
-                        <li><button>Create new playlist</button></li>
-                        
-                    </ul>
-                </div>
         </div>
     </div>
 
@@ -19,6 +10,15 @@
             <div class="col-md-6">
                 <app-content-list [title]="'LibraryPlaylistsText' | translate" type="playlist" [list]="userPlaylists">
                 </app-content-list>
+                <div id = "innerbox">
+                    <form>
+                        <input type="text" id="playlist_name" name="playlist_name" placeholder="Name"><br>
+                        <input type="text" id="description" name="description" placeholder="Description"><br>
+                        <input type="checkbox" id="public" name="public" value="public">
+                        <label for="vehicle1"> Public</label><br>
+                        <input type="submit" value="Create New Playlist">
+                      </form>
+                </div>
             </div>
 
             <div class="col-md-6">
