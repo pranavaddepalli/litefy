@@ -11,6 +11,7 @@ import { User } from "src/app/models/user";
 import { forkJoin } from "rxjs";
 import { YoutubePlayerStatus } from "src/app/models/youtube-player-status";
 import { TranslateService } from "@ngx-translate/core";
+import { SpotifyPlaylistService } from 'src/app/services/spotify-playlist.service';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class ContentListComponent extends SettingsBase implements OnInit {
         private youtubePlayerService: YoutubePlayerService,
         private userService: UserService,
         public translateService: TranslateService,
+        private playlistService: SpotifyPlaylistService,
         injector: Injector
     ) {
         super(injector);
@@ -144,13 +146,10 @@ export class ContentListComponent extends SettingsBase implements OnInit {
     }
 
     add(selectItem) {
-        this.playerService
-            .add(this.getRootItem(selectItem).uri, this.device_id)
-            .subscribe(() => {
-                this.playerService.getCurrentState().subscribe((item) => {
-                    this.playerService.setPlayerStatus(item);
-                });
-            });
+        // MARK: this is where to add songs to playlist
+        console.log("add");
+        console.log(this.playlistService.addTrack("4gZayV5XRm76t3cKy6RM7a", "spotify:track:4SI5jkfBClYmMWhWWH8f9p"))
+    
     }
 
     playAlbum(id) {

@@ -47,13 +47,14 @@ export class ServiceBase {
         );
     }
 
-    Delete<Tretorno>(url) {
+    Delete<Tretorno>(url, params) {
         this.checkExpiration();
 
-        return this.http.put<Tretorno>(url, {
+        return this.http.delete<Tretorno>(url, {
             headers: {
                 'Authorization': 'Bearer ' + this.auth.getAuth()
-            }
+            },
+            params: params
         });
     }
 
