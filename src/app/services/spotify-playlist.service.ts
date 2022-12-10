@@ -22,9 +22,9 @@ export class SpotifyPlaylistService {
         this.service.Post(`https://api.spotify.com/v1/me/playlists`, {"name" : name, "description" : description, "public" : isPublic}).subscribe(val => console.log(val));
         return this.service.Post(`https://api.spotify.com/v1/me/playlists`, {"name" : name, "description" : description, "public" : isPublic});
     }
-    addTrack(playlistId: string, trackId: string): Observable<SpotifyApi.AddTracksToPlaylistResponse> {
-        this.service.Post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${trackId}`, {}).subscribe(val => console.log(val));
-        return this.service.Post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${trackId}`, {});
+    addTrack(playlistId: string, trackURI: string): Observable<SpotifyApi.AddTracksToPlaylistResponse> {
+        this.service.Post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${trackURI}`, {}).subscribe(val => console.log(val));
+        return this.service.Post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${trackURI}`, {});
     }
     deleteTrack(playlistId: string, trackId: string): Observable<SpotifyApi.RemoveTracksFromPlaylistResponse> {
         return this.service.Delete(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {"tracks": [{"uri":`spotify:track:${trackId}`}]});

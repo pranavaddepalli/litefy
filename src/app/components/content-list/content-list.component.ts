@@ -46,6 +46,7 @@ export class ContentListComponent extends SettingsBase implements OnInit {
 
     device_id: string;
     playerState: any;
+    playlistAddTo: string;
     premium = true;
     currentAlbum = "";
     lastItem = 9;
@@ -104,6 +105,7 @@ export class ContentListComponent extends SettingsBase implements OnInit {
 
     playTrack(selectItem) {
         if (this.premium) {
+            console.log(selectItem)
             if (
                 this.playerState?.item.id ===
                 this.getRootItem(selectItem).id
@@ -146,10 +148,10 @@ export class ContentListComponent extends SettingsBase implements OnInit {
     }
 
     add(selectItem) {
-        // MARK: this is where to add songs to playlist
-        console.log("add");
-        console.log(this.playlistService.addTrack("4gZayV5XRm76t3cKy6RM7a", "spotify:track:4SI5jkfBClYmMWhWWH8f9p"))
-    
+        console.log(selectItem.uri);
+        // Add to specific playlist, this is currently hard coded to a playlist id of mine
+        this.playlistAddTo = "4gZayV5XRm76t3cKy6RM7a";
+        console.log(this.playlistService.addTrack(this.playlistAddTo, selectItem.uri))
     }
 
     playAlbum(id) {
