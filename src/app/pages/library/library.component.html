@@ -3,6 +3,15 @@
         <div class="col-12">
             <h2>{{ 'Hello' | translate }}, {{ usuarioLogado.display_name }}. 😁 <button id="addPlaylist">Create Playlist</button></h2>
         </div>
+         <div id = "innerbox">
+                    <form>
+                        <input type="text" id="playlist_name" name="playlist_name" placeholder="Name"><br>
+                        <input type="text" id="description" name="description" placeholder="Description"><br>
+                        <input type="checkbox" id="public" name="public" value="public">
+                        <label for="vehicle1"> Public</label><br>
+                        <input type="submit" value="Create New Playlist" (click)="createPlaylist()">
+                      </form>
+        </div>
     </div>
 
     <ng-container *ngIf="userPlaylists?.length > 0 || userAlbums?.length > 0 || userTracks?.length > 0">
@@ -10,15 +19,6 @@
             <div class="col-md-6">
                 <app-content-list [title]="'LibraryPlaylistsText' | translate" type="playlist" [list]="userPlaylists">
                 </app-content-list>
-                <div id = "innerbox">
-                    <form>
-                        <input type="text" id="playlist_name" name="playlist_name" placeholder="Name"><br>
-                        <input type="text" id="description" name="description" placeholder="Description"><br>
-                        <input type="checkbox" id="public" name="public" value="public">
-                        <label for="vehicle1"> Public</label><br>
-                        <input type="submit" value="Create New Playlist">
-                      </form>
-                </div>
             </div>
 
             <div class="col-md-6">
