@@ -165,6 +165,7 @@ a:hover {
    background: white;
    border-color: black; 
    border-radius: 10px;
+   margin:1%;
 }
 
 input[type=submit] {
