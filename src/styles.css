@@ -157,15 +157,14 @@ a:hover {
 
 #innerbox
 {
-   width:225px; /* or whatever width you want. */
-   max-width:225px; /* or whatever width you want. */
+   width:400px; /* or whatever width you want. */
+   max-width:400px; /* or whatever width you want. */
    display: inline-block;
-   padding: 10px 10px;
+   padding: 20px 20px;
    color: black;
    background: white;
    border-color: black; 
    border-radius: 10px;
-
 }
 
 input[type=submit] {
