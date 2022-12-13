@@ -1,11 +1,12 @@
 /// <reference path="../../../../node_modules/@types/spotify-api/index.d.ts" />
 
 import { Component, OnInit } from '@angular/core';
-import { forkJoin } from 'rxjs';
+import { forkJoin, ReplaySubject } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { SpotifyUserService } from 'src/app/services/spotify-user.service';
 import { UserService } from 'src/app/services/user.service';
 import { SpotifyPlaylistService } from 'src/app/services/spotify-playlist.service';
+import { FileUploadService } from 'src/app/file-upload.service';
 
 @Component({
   selector: 'app-library',
@@ -14,7 +15,7 @@ import { SpotifyPlaylistService } from 'src/app/services/spotify-playlist.servic
 })
 export class LibraryComponent implements OnInit {
 
-  constructor(private serviceUsuario: SpotifyUserService, private usuario: UserService, private playlistService: SpotifyPlaylistService) { }
+  constructor(private serviceUsuario: SpotifyUserService, private usuario: UserService, private playlistService: SpotifyPlaylistService, private fileUploadService: FileUploadService) { }
 
   userPlaylists: SpotifyApi.PagingObject<SpotifyApi.PlaylistObjectSimplified>;
   userAlbums: SpotifyApi.PagingObject<SpotifyApi.SavedAlbumObject>;
@@ -22,9 +23,16 @@ export class LibraryComponent implements OnInit {
 
   usuarioLogado: User;
 
+  shortLink: string = "";
+  file: File;
+  base64Output : string;
+  hello: string = "rando"
+
   ngOnInit() {
     this.getLoggedUser();
     this.getUserLibrary();
+    this.file = null;
+    this.base64Output = "";
   }
 
   getLoggedUser() {
@@ -47,21 +55,42 @@ export class LibraryComponent implements OnInit {
       });
   }
 
-  createPlaylist() {
-    console.log("create");
-    console.log(this.playlistService.createPlaylist("tester", "new playlist", true))
+
+
+
+
+  createPlaylist(name, description, collaborative, publicOrPriv) {
+    //console.log("create");
+
+    if (!collaborative) {
+      collaborative = false
+    }
+    if (!publicOrPriv) {
+      publicOrPriv = false
+    }
+    if (publicOrPriv && collaborative) {
+      //Public must be false if it is a collaborative playlist
+      publicOrPriv = false
+    }
+    if (name.viewModel && description.viewModel) {
+      const createdPlaylist = this.playlistService.createPlaylist(name.viewModel, description.viewModel, collaborative, publicOrPriv)
+      createdPlaylist.subscribe(val => console.log(val))
+      alert("Your playlist " + name.viewModel + 
+            " has been created!");
+    //     var id = ""
+    //     var bits = this.base64Output
+    //     var service = this.playlistService
+    //     function updatePlaylistCover() {
+    //       service.updatePlaylistCover(id, bits);
+    //     }
+    //   createdPlaylist.subscribe(val => {
+    //     id = val.id;
+    //     console.log(id);},
+    //     (err) => console.error(err),
+    //     () => updatePlaylistCover())
+    //  }
+     
   }
 
-  addTrack() {
-    console.log("add");
-    console.log(this.playlistService.addTrack("4gZayV5XRm76t3cKy6RM7a", "spotify:track:4SI5jkfBClYmMWhWWH8f9p"))
-
-  }
-
-  deleteTrack() {
-    console.log("delete");
-
-
-  }
-
+}
 }

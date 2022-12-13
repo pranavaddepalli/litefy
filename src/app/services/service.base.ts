@@ -38,13 +38,18 @@ export class ServiceBase {
             headers: {
                 'Authorization': 'Bearer ' + this.auth.getAuth()
             }
-        }).pipe(
-          catchError(error => {
-            if (error?.status === 403 && error?.error?.error?.reason === 'PREMIUM_REQUIRED') {
-                return EMPTY;
+        })
+    }
+    PutImage<Tretorno>(url, model) {
+        this.checkExpiration();
+
+        return this.http.put<Tretorno>(url, model, {
+            headers: {
+                'Authorization': 'Bearer ' + this.auth.getAuth(),
+                'Content-Type': 'image/jpeg',
+                'Cache-Control': 'no-cache'
             }
-          })
-        );
+        })
     }
 
     Delete<Tretorno>(url, params) {

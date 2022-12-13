@@ -15,16 +15,19 @@ export class SpotifyPlaylistService {
         return this.service.Get(`https://api.spotify.com/v1/playlists/${id}`);
     }
 
-    createPlaylist(name: string, description: string, isPublic: boolean): Observable<SpotifyApi.CreatePlaylistResponse> {
+
+    createPlaylist(name: string, description: string, isCollaborative: boolean, isPublic: boolean): Observable<SpotifyApi.CreatePlaylistResponse> {
         console.log("in service");
-       // this.service.Post(`https://api.spotify.com/v1/me/playlists`, {"name" : name, "description" : description, "public" : isPublic}).subscribe(val => console.log(val));
-        //return this.service.Post(`https://api.spotify.com/v1/me/playlists?name=${name}&description=${description}&public=${isPublic}`, {"name" : name, "description" : description, "public" : isPublic});
-        this.service.Post(`https://api.spotify.com/v1/me/playlists`, {"name" : name, "description" : description, "public" : isPublic}).subscribe(val => console.log(val));
-        return this.service.Post(`https://api.spotify.com/v1/me/playlists`, {"name" : name, "description" : description, "public" : isPublic});
+        return this.service.Post(`https://api.spotify.com/v1/me/playlists`, {"name" : name, "description" : description, "collaborative": isCollaborative, "public" : isPublic});
     }
-    addTrack(playlistId: string, trackURI: string): Observable<SpotifyApi.AddTracksToPlaylistResponse> {
-        this.service.Post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${trackURI}`, {}).subscribe(val => console.log(val));
-        return this.service.Post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${trackURI}`, {});
+    updatePlaylistCover(playlistID: string, image: string){
+        this.service.PutImage(`https://api.spotify.com/v1/me/playlists/` + playlistID + `/images`, image).subscribe(val => console.log(val));
+        return this.service.PutImage(`https://api.spotify.com/v1/me/playlists/` + playlistID + `/images`, image);
+    }
+
+    addTrack(playlistId: string, trackId: string): Observable<SpotifyApi.AddTracksToPlaylistResponse> {
+        this.service.Post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${trackId}`, {}).subscribe(val => console.log(val));
+        return this.service.Post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${trackId}`, {});
     }
     deleteTrack(playlistId: string, trackId: string): Observable<SpotifyApi.RemoveTracksFromPlaylistResponse> {
         return this.service.Delete(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {"tracks": [{"uri":`spotify:track:${trackId}`}]});
