@@ -162,28 +162,29 @@ a:hover {
    display: inline-block;
    padding: 20px 20px;
    color: black;
-   background: white;
-   border-color: black; 
+   background: #1DB954;
+   /* border-color: #1DB954;  */
    border-radius: 10px;
    margin:1%;
 }
 
 input[type=submit] {
-    background-color: #1BB954;
-    border: none;
-    color: white;
+    background-color: white;
+    border: white;
+    color: black;
     width: 90%;
-    padding: 2px 5px;
+    padding: 2px 10px;
     text-decoration: none;
     cursor: pointer;
-    border-radius: 6px
+    border-radius: 10px
   }
 
 input[type=text] {
-  width: 89%;
-  padding: 2px 5px;
-  border-radius: 6px;
-  box-sizing: border-box;
+    width: 89%;
+    padding: 2px 5px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border-color: #1DB954;
 }
 
 #innerbox input

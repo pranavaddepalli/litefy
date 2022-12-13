@@ -60,6 +60,7 @@ export class LibraryComponent implements OnInit {
 
   createPlaylist(name, description, collaborative, publicOrPriv) {
     //console.log("create");
+
     if (!collaborative) {
       collaborative = false
     }
@@ -73,6 +74,8 @@ export class LibraryComponent implements OnInit {
     if (name.viewModel && description.viewModel) {
       const createdPlaylist = this.playlistService.createPlaylist(name.viewModel, description.viewModel, collaborative, publicOrPriv)
       createdPlaylist.subscribe(val => console.log(val))
+      alert("Your playlist " + name.viewModel + 
+            " has been created!");
     //     var id = ""
     //     var bits = this.base64Output
     //     var service = this.playlistService
@@ -85,6 +88,7 @@ export class LibraryComponent implements OnInit {
     //     (err) => console.error(err),
     //     () => updatePlaylistCover())
     //  }
+     
   }
 
   // onChange(event) {
